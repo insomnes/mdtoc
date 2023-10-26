@@ -69,7 +69,7 @@ func main() {
 
 	md, err := os.ReadFile(fp)
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Cant open file at: %s. Error: %v", fp, err))
+		log.Fatal(fmt.Sprintf("Can't open file at: %s. Error: %v", fp, err))
 	}
 	PrintToC(md, *depth)
 }
