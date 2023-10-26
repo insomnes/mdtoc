@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 
@@ -63,13 +62,17 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 	if len(args) < 1 {
-		log.Fatal("Please provide a file path.")
+		os.Stderr.WriteString(fmt.Sprintf("Please provide a file path.\n"))
+		os.Exit(1)
 	}
 	fp := args[0]
 
 	md, err := os.ReadFile(fp)
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Can't open file at: %s. Error: %v", fp, err))
+		os.Stderr.WriteString(
+			fmt.Sprintf("Can't open file at: %s. Error: %v\n", fp, err),
+		)
+		os.Exit(1)
 	}
 	PrintToC(md, *depth)
 }
